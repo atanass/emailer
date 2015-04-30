@@ -8,6 +8,7 @@ import java.util.Properties;
 public class Configurator {
 
 	private static final String PROPS_FILE = "engine.properties";
+	public static final String IP_POOL = "Main Pool";
 	
 	public String getConfig(String key) throws IOException{
 		Properties props = new Properties();

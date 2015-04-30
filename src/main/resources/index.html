@@ -1,0 +1,19 @@
+<html ng-app="myApp" ng-controller="myController as controller">
+<title>AngularJS Directives</title>
+<body>
+
+<h1>Email submit form</h1>
+
+<form action="http://localhost:8080/emailer/message/submit" method="post" >
+   <p>From (Name): <input type="text" name="from_name"></p>
+   <p>From (Email): <input type="text" name="from_email"></p>
+   <p>To (Name): <input type="text" name="to_name"></p>
+   <p>To (Email): <input type="text" name="to_email"></p>
+   <p>Subject: <input type="text" name="subject"></p>
+   <p><textarea cols="50" rows="5" name="msg"></textarea></p>
+   <input type="submit" value="Submit me!"></input>
+</form>
+<script type="text/javascript" src="assets/emailer.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+</body>
+</html>
