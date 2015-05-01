@@ -69,14 +69,8 @@ public class Request {
 		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
 		Date now = new Date();
 		now.setDate(now.getDate()-1);
-		System.out.println(format.format(now));
 		Request req = null;
-		try {
-			req = new Request(new Configurator().getConfig("mandrill.auth.key"), message, important, Configurator.IP_POOL, format.format(now));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		req = new Request(new Configurator().getConfig("mandrill.auth.key"), message, important, Configurator.IP_POOL, format.format(now));
 		return req;
 	}
 	

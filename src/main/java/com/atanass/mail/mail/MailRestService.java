@@ -34,16 +34,20 @@ public class MailRestService {
 			@FormParam("to_name") String to_name,
 			@FormParam("to_email") String to_email,
 			@FormParam("subject") String subject,
+			@FormParam("important") boolean important,
 			@FormParam("msg") String message) {
 
 		
 		Request req = Request.buildRequest("some html demo", message, subject,
-				from_name, from_email, to_name, to_email, "to", false);
-		String body = JSONUtil.jsonify(req);
-		System.out.println(body);
-
+				from_name, from_email, to_name, to_email, "to", important);
+		
+		MailApplication.failOver();
+		String body = FormatAdaptor.adaptRequest(req);
+		
+//		return Response.status(201).entity("Response: " + body).build();
+		
 		String response = MailRestClientFactory.getFactory()
-				.createMailRestClient(Routing.getDefaultEndpoint())
+				.createMailRestClient(MailApplication.getEndpoint())
 				.sendRequest(body);
 		return Response.status(201).entity("Response: " + response).build();
 	}

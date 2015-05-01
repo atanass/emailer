@@ -14,6 +14,8 @@ import org.jboss.resteasy.client.ClientResponse;
 import com.atanass.mail.client.mandrill.Message;
 import com.atanass.mail.client.mandrill.Recipient;
 import com.atanass.mail.client.mandrill.Request;
+import com.atanass.mail.mail.Configurator;
+import com.atanass.mail.mail.MailApplication;
 
 public class MailRestClient {
 
@@ -29,13 +31,15 @@ public class MailRestClient {
 	
 	public String sendRequest(String body) {
 		String result = new String();
+		ClientRequestFactory reqFactory = new ClientRequestFactory();
+		ClientRequest clientRequest = reqFactory.createRequest(this.provider);
 		try {
-			ClientRequestFactory reqFactory = new ClientRequestFactory();
-			
-			ClientRequest clientRequest = reqFactory.createRequest(this.provider);
-			
-			clientRequest.body(MediaType.APPLICATION_JSON, body);
-			
+			if ( MailApplication.getActiveProvider().equals("mandrill")){
+				clientRequest.body(MediaType.APPLICATION_JSON, body);
+			} else if (MailApplication.getActiveProvider().equals("sendgrid")){
+				clientRequest.body(MediaType.APPLICATION_FORM_URLENCODED, body);
+				clientRequest.header("Authorization", "Bearer " + new Configurator().getConfig("sendgrid.auth.key"));
+			}
 			result = clientRequest.post().getEntity(String.class).toString();
 		} catch (URISyntaxException e1) {
 			// TODO Auto-generated catch block

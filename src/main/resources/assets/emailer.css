@@ -1,0 +1,25 @@
+body {
+    background-color: lightblue;
+}
+
+.center {
+	text-align: center;
+}
+
+.hidden {
+	display: block;
+}
+
+p.inputs {
+	font-family: "Arial Black", Gadget, sans-serif;
+}}
+
+input {
+	border-radius: 5px;
+}
+
+h1 {
+	font-family: Impact, Charcoal, sans-serif;
+    color: navy;
+    margin-left: 100px;
+}

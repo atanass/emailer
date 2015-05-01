@@ -14,9 +14,9 @@ public class Demo {
 
 	public static void main(String[] args) {
 
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm a");
-		Date date = new Date();
-		System.out.println(format.format(date));
+		
+		
+		
 	}
 
 }

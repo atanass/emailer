@@ -10,16 +10,19 @@ public class Configurator {
 	private static final String PROPS_FILE = "engine.properties";
 	public static final String IP_POOL = "Main Pool";
 	
-	public String getConfig(String key) throws IOException{
+	public String getConfig(String key) {
 		Properties props = new Properties();
 		
 		InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(PROPS_FILE);
 		
 		if (inputStream != null){
-			props.load(inputStream);
-		} else {
-			throw new FileNotFoundException("property file " + PROPS_FILE + " not found");
-		}
+			try {
+				props.load(inputStream);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} 
 		return (props.getProperty(key));
 	}
 	
