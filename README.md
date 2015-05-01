@@ -17,5 +17,23 @@ which is applicable to the respective 3rd party email provider's API
 6. Message submission status is returned to the user.
 
 
+# Technology stack choice
+I've chosen to write the back-end application in Java and have it compiled with Maven as war file, because thisway provides
+easy method for integrating different libraries (including such as the ones provided by the email engine providers)
+I have developed it locally, running it in JBoss 7.1 container server as this is the web server I have most experience with.
+I think JBoss can provide scaling and customization of the running application, including environment specific configuration management.
+
+List of used technology
+Java - jdk1.6.0_43
+Maven - 2.2.1
+Dependencies: 
+ - org.codehaus.jackson libraries for structured data binding and parsing
+ - org.jboss.resteasy.resteasy-jaxrs library for RESTful interface implementation (as it is suitable for the preferred deployment platform mentioned above)
+
+
+#Personal notes:
+I've tried to make the back-end application as much moduled as possible in order to make integrating a new mail provider easier. I hope I got at least close to the idea :)
+
+
 
 # IN PROGRESS...

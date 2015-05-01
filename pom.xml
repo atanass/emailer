@@ -33,11 +33,6 @@
 			<scope>provided</scope>
 			<version>1.9.13</version>
 		</dependency>
-		<dependency>
-			<groupId>com.mandrillapp.wrapper.lutung</groupId>
-			<artifactId>lutung</artifactId>
-			<version>0.0.5</version>
-		</dependency>
 	</dependencies>
 
 	<build>
