@@ -1,5 +1,5 @@
 body {
-    background-color: lightblue;
+    background-color: skyblue;
 }
 
 .center {
@@ -11,15 +11,17 @@ body {
 }
 
 p.inputs {
-	font-family: "Arial Black", Gadget, sans-serif;
-}}
+	font-family: Impact, Charcoal, sans-serif;
+	color: navy;
+}
 
 input {
 	border-radius: 5px;
 }
 
-h1 {
+p#formName {
 	font-family: Impact, Charcoal, sans-serif;
     color: navy;
-    margin-left: 100px;
+    text-align: center;
+    font-size: 60px
 }

@@ -3,25 +3,25 @@
 <title>Email dashboard</title>
 <head>
 <link rel="stylesheet" type="text/css" href="assets/emailer.css">
-<script type="text/javascript" src="assets/emailer.js"></script>
-<script type="text/javascript" src="assets/ajax.js"></script>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script type="text/javascript" src="assets/javascript/emailer.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>  -->
 </head>
 <body>
-<input type="button" onclick="test()" value="Request data">
-<h1 class="center">Email submit form</h1>
-<div ng-app="app" ng-controller="form-controller">
-<form  class="center" action="http://localhost:8080/emailer/message/submit" method="post">
-   <p class="inputs">From: <input type="text" name="from_email" ng-model="fromBind" value="email" onfocus="this.value = '';">
-   <input class="inputs" type="text" name="from_name" ng-bind="fromBind" value="name" onfocus="this.value = '';">
+<p id="formName">Email submit form</p>
+<div>
+<form  class="center" action="http://localhost:8080/emailer/submit" method=post>
+   <p class="inputs">From: <input class="inputs" type="text" name="from_email" onfocusout="if (this.value != '') { validateEmailFormat(this) }" placeholder="Email" required>
+   <input class="inputs" type="text" name="from_name" placeholder="Name">
    </p>
-   <p class="inputs">To: <input type="text" name="to_email" ng-model="toBind" value="email" onfocus="this.value = '';">
-   <input class="inputs" type="text" name="to_name" ng-bind="toBind" value="name" onfocus="this.value = '';">
+   <p class="inputs">To: <input type="text" name="to_email" onfocusout="if (this.value != '' ) { validateEmailFormat(this) }" placeholder="Mail address" required>
+   <input class="inputs" type="text" name="to_name" placeholder="Name">
    </p>
-   <p class="inputs">Subject: <input type="text" name="subject"></p>
-   <p class="inputs">Important? <input type="checkbox" name="important"></p>
-   <p><textarea cols="50" rows="5" name="msg"></textarea></p>
+   <p class="inputs">Subject: <input type="text"></p>
+   <p class="inputs">Important? <input type="checkbox" id="importantCheckbox" onchange="changeImportant()"></p>
+   <p class="inputs"><input type="hidden" id="importantParam"  name="important" value="false"></p>
+   <p><textarea cols="50" rows="5" name="msg" required></textarea></p>
    <input type="submit" value="Send message"></input>
 </form>
 </div>

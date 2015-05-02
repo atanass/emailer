@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class ResourceLoader {
 
+	private static final String APP_IDENTIFICATOR = "emailerAppIdentification";
+	
 	public String loadResource(String path){
 		InputStream inps = this.getClass().getClassLoader().getResourceAsStream(path);
 		Scanner scanner = new Scanner(inps);
@@ -20,6 +22,11 @@ public class ResourceLoader {
 			System.out.println("Error while closing scanner");
 		}
 		return strBuff.toString();
+	}
+	
+	public String loadDynamicResource(String path, String subtitution){
+		String originalResource = loadResource(path);
+		return originalResource.replace(APP_IDENTIFICATOR, subtitution);
 	}
 	
 }

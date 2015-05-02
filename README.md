@@ -24,8 +24,9 @@ I have developed it locally, running it in JBoss 7.1 container server as this is
 I think JBoss can provide scaling and customization of the running application, including environment specific configuration management.
 
 List of used technology
-Java - jdk1.6.0_43
-Maven - 2.2.1
+ - Java - jdk1.6.0_43
+ - Maven - 2.2.1
+
 Dependencies: 
  - org.codehaus.jackson libraries for structured data binding and parsing
  - org.jboss.resteasy.resteasy-jaxrs library for RESTful interface implementation (as it is suitable for the preferred deployment platform mentioned above)
