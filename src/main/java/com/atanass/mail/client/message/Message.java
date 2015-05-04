@@ -1,4 +1,4 @@
-package com.atanass.mail.client.mandrill;
+package com.atanass.mail.client.message;
 
 import java.util.List;
 

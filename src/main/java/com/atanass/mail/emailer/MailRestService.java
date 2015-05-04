@@ -1,4 +1,4 @@
-package com.atanass.mail.mail;
+package com.atanass.mail.emailer;
 
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -8,7 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 import com.atanass.mail.client.MailRestClientFactory;
-import com.atanass.mail.client.mandrill.Request;
+import com.atanass.mail.client.message.Request;
 
 @Path("/")
 public class MailRestService {
@@ -36,9 +36,10 @@ public class MailRestService {
 		
 		// Adapt the request according to the current default provider and process it
 		String body = FormatAdaptor.adaptRequest(req);
+		System.out.println(body);
+		
 		providerResponse = clientFactory.createMailRestClient(
 				MailApplication.getEndpoint()).sendRequest(body);
-		System.out.println(providerResponse);
 
 		// Check if the email processing was successful and if not - tries again after the failover
 		boolean initialSuccess = handler.validateResponse(providerResponse);
@@ -50,7 +51,6 @@ public class MailRestService {
 		}
 
 		// Form the end response message that will be returned to the user
-		System.out.println(providerResponse);
 		emailerResponse = initialSuccess ? SUCCESS_MSG : ERROR_MSG + providerResponse ;
 		return Response.status(200).entity(new ResourceLoader().loadDynamicResource("postSubmit.html", emailerResponse))
 				.build();

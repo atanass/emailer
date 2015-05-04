@@ -18,7 +18,7 @@
    <p class="inputs">To: <input type="text" name="to_email" onfocusout="if (this.value != '' ) { validateEmailFormat(this) }" placeholder="Mail address" required>
    <input class="inputs" type="text" name="to_name" placeholder="Name">
    </p>
-   <p class="inputs">Subject: <input type="text"></p>
+   <p class="inputs">Subject: <input type="text" name="subject"></p>
    <p class="inputs">Important? <input type="checkbox" id="importantCheckbox" onchange="changeImportant()"></p>
    <p class="inputs"><input type="hidden" id="importantParam"  name="important" value="false"></p>
    <p><textarea cols="50" rows="5" name="msg" required></textarea></p>

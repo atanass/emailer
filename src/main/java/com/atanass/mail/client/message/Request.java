@@ -1,4 +1,4 @@
-package com.atanass.mail.client.mandrill;
+package com.atanass.mail.client.message;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 
-import com.atanass.mail.mail.Configurator;
+import com.atanass.mail.emailer.Configurator;
 
 @XmlAccessorType(XmlAccessType.NONE)
 public class Request {
@@ -32,6 +32,10 @@ public class Request {
 	@XmlElement
 	private String send_at;
 
+	public void setKey(String key){
+		this.key = key;
+	}
+	
 	public String getKey() {
 		return key;
 	}
@@ -62,6 +66,20 @@ public class Request {
 		this.send_at = send_at;
 	}
 	
+	
+	/**
+	 * Builds request
+	 * @param html Html parameter of the user request
+	 * @param text Email text
+	 * @param subject Email subject
+	 * @param senderName Sender's name
+	 * @param senderEmail Sender's email
+	 * @param recipientName Recipient's name
+	 * @param recipientEmail Recipient's email
+	 * @param recipientsType The type of the recipients - "to", "cc", "bcc"
+	 * @param important "Important" flag of the email
+	 * @return {@link Request} instance with the provided data
+	 */
 	public static Request buildRequest(String html, String text, String subject, String senderName, String senderEmail, String recipientName, String recipientEmail, String recipientsType, boolean important){
 		List<Recipient> recipients = new ArrayList<Recipient>();
 		recipients.add(new Recipient(recipientEmail, recipientName, recipientsType));

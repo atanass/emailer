@@ -1,4 +1,4 @@
-package com.atanass.mail.mail;
+package com.atanass.mail.emailer;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -14,6 +14,9 @@ public class MailApplication extends Application{
 	private static String endpoint = appConfig.getConfig(activeProvider);
 	private static String mode = "alpha";
 	
+	/**
+	 * Switches the active mail provider of the running application
+	 */
 	protected static void failOver(){
 		if (mode.equals("alpha")){
 			activeProvider = appConfig.getConfig(FAILOVER);
@@ -25,11 +28,19 @@ public class MailApplication extends Application{
 		endpoint = appConfig.getConfig(activeProvider);
 	}
 	
+	/**
+	 * Gets the currently active provider
+	 * @return Currently active provider
+	 */
 	public static String getActiveProvider(){
 		return activeProvider;
 	}
 	
-	static String getEndpoint(){
+	/**
+	 * Gets the currently active provider's endpoint
+	 * @return The active provider's endpoint
+	 */
+	public static String getEndpoint(){
 		return endpoint;
 	}
 	

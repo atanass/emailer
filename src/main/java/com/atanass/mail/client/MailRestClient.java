@@ -11,11 +11,11 @@ import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientRequestFactory;
 import org.jboss.resteasy.client.ClientResponse;
 
-import com.atanass.mail.client.mandrill.Message;
-import com.atanass.mail.client.mandrill.Recipient;
-import com.atanass.mail.client.mandrill.Request;
-import com.atanass.mail.mail.Configurator;
-import com.atanass.mail.mail.MailApplication;
+import com.atanass.mail.client.message.Message;
+import com.atanass.mail.client.message.Recipient;
+import com.atanass.mail.client.message.Request;
+import com.atanass.mail.emailer.Configurator;
+import com.atanass.mail.emailer.MailApplication;
 
 public class MailRestClient {
 
@@ -29,6 +29,11 @@ public class MailRestClient {
 		this.provider = provider;
 	}
 	
+	/**
+	 * Sends client request to the currently active mail provider
+	 * @param The body to send to the mail provider
+	 * @return Mail provider's response 
+	 */
 	public String sendRequest(String body) {
 		String result = new String();
 		ClientRequestFactory reqFactory = new ClientRequestFactory();

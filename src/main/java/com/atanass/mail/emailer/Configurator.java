@@ -1,4 +1,4 @@
-package com.atanass.mail.mail;
+package com.atanass.mail.emailer;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,6 +10,12 @@ public class Configurator {
 	private static final String PROPS_FILE = "engine.properties";
 	public static final String IP_POOL = "Main Pool";
 	
+	
+	/**
+	 * Loads the main property file the configuration file and returns the property for the entry
+	 * @param key Key of the properties entry
+	 * @return Value of the property
+	 */
 	public String getConfig(String key) {
 		Properties props = new Properties();
 		
