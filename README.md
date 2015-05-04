@@ -1,4 +1,4 @@
-# emailer
+# Emailer app
 
 The "Emailer" application provides a basic web form for filling in basic email details for submitting messages:
  - email from which the message is submitted
@@ -13,9 +13,14 @@ The "Emailer" application provides a basic web form for filling in basic email d
 3. The backend recieves the details as parameters and builds a "Request" prototype object
 4. According to the current (at run-time) active email provider, the application formats the request object and creates a body,
 which is applicable to the respective 3rd party email provider's API
-5. The backend sends a client request, containing the data previously received by the user and recieves a response from the provider
+5. The backend sends a client request, containing the data previously received by the user and receives a response from the provider
+6. The response from the mail provider is validated and if it contains "error" a failover is executed, switching the processing to the alternative mail provider
+7. Another request is sent, this time to the newly activated provider. If it fails an error message is returned to the user
 6. Message submission status is returned to the user.
 
+# FE validations
+The fields for sender and recipient email are bundled with syntax validation upon exiting the HTML field focus - should follow the john@foobar.com template.
+They are also "required" so that the user cannot even submit the form without values in it.
 
 # Technology stack choice
 I've chosen to write the back-end application in Java and have it compiled with Maven as war file, because thisway provides
@@ -26,6 +31,8 @@ I think JBoss can provide scaling and customization of the running application, 
 List of used technology
  - Java - jdk1.6.0_43
  - Maven - 2.2.1
+ - TestNG - 6.8.5
+ - Jboss 71
 
 Dependencies: 
  - org.codehaus.jackson libraries for structured data binding and parsing
@@ -33,8 +40,5 @@ Dependencies:
 
 
 #Personal notes:
-I've tried to make the back-end application as much moduled as possible in order to make integrating a new mail provider easier. I hope I got at least close to the idea :)
-
-
-
-# IN PROGRESS...
+The main web service in the back end (POST /message/submit) is designed to always try with the alternative mail provider if the first request fails.
+I've tried to make the back-end application as much moduled as possible in order to make integrating a new mail provider easier.
