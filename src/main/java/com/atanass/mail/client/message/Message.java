@@ -20,10 +20,10 @@ public class Message {
 	private String subject;
 	
 	@XmlElement
-	private String from_name;
+	private String fromName;
 	
 	@XmlElement
-	private String from_email;
+	private String fromEmail;
 	
 	@XmlElement
 	private List<Recipient> to;
@@ -34,6 +34,20 @@ public class Message {
 	@XmlElement
 	private boolean important;
 
+	public Message(String html, String text, String subject, String from_name,
+			String from_email, List<Recipient> to, List<String> headers,
+			boolean important) {
+		super();
+		this.html = html;
+		this.text = text;
+		this.subject = subject;
+		this.fromName = from_name;
+		this.fromEmail = from_email;
+		this.to = to;
+		this.headers = headers;
+		this.important = important;
+	}
+	
 	public String getHtml() {
 		return html;
 	}
@@ -47,11 +61,11 @@ public class Message {
 	}
 
 	public String getFrom_name() {
-		return from_name;
+		return fromName;
 	}
 
 	public String getFrom_email() {
-		return from_email;
+		return fromEmail;
 	}
 
 	public List<Recipient> getTo() {
@@ -65,21 +79,5 @@ public class Message {
 	public boolean isImportant() {
 		return important;
 	}
-
-	public Message(String html, String text, String subject, String from_name,
-			String from_email, List<Recipient> to, List<String> headers,
-			boolean important) {
-		super();
-		this.html = html;
-		this.text = text;
-		this.subject = subject;
-		this.from_name = from_name;
-		this.from_email = from_email;
-		this.to = to;
-		this.headers = headers;
-		this.important = important;
-	}
-	
-	
 	
 }

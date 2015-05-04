@@ -36,10 +36,7 @@ public class TestMailProviders {
 				"to");
 		List<Recipient> recipList = new ArrayList<Recipient>();
 		recipList.add(rec);
-		request = new Request("", new Message("html", "text", "subject",
-				"from_name", "from@email.com", recipList,
-				new ArrayList<String>(), false), false, "Main Pool",
-				"04/01/2015 10:00 AM");
+		request = new Request("", "text", "subject", "senderName", "sender@email.com", "recipient name", "recipient@email.com", "to", false);
 
 	}
 

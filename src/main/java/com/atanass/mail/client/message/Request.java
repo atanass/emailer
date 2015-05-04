@@ -27,11 +27,26 @@ public class Request {
 	private boolean async;
 	
 	@XmlElement
-	private String ip_pool;
+	private String ipPool;
 	
 	@XmlElement
-	private String send_at;
+	private String sendAt;
 
+	public Request(String html, String text, String subject, String senderName, String senderEmail, String recipientName, String recipientEmail, String recipientsType, boolean important){
+		this.key = new Configurator().getConfig("mandrill.auth.key");
+		List<Recipient> recipients = new ArrayList<Recipient>();
+		recipients.add(new Recipient(recipientEmail, recipientName, recipientsType));
+		Message message = new Message(html, text, subject, senderName, senderEmail, recipients, null, false);
+		this.message = message; 
+		this.async = false;
+		this.ipPool = Configurator.IP_POOL;
+		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+		Date now = new Date();
+		now.setDate(now.getDate()-1);
+		this.sendAt = format.format(now);
+	}
+	
+	
 	public void setKey(String key){
 		this.key = key;
 	}
@@ -49,48 +64,11 @@ public class Request {
 	}
 
 	public String getIp_pool() {
-		return ip_pool;
+		return ipPool;
 	}
 
 	public String getSend_at() {
-		return send_at;
+		return sendAt;
 	}
 
-	public Request(String key, Message message, boolean async, String ip_pool,
-			String send_at) {
-		super();
-		this.key = key;
-		this.message = message;
-		this.async = async;
-		this.ip_pool = ip_pool;
-		this.send_at = send_at;
-	}
-	
-	
-	/**
-	 * Builds request
-	 * @param html Html parameter of the user request
-	 * @param text Email text
-	 * @param subject Email subject
-	 * @param senderName Sender's name
-	 * @param senderEmail Sender's email
-	 * @param recipientName Recipient's name
-	 * @param recipientEmail Recipient's email
-	 * @param recipientsType The type of the recipients - "to", "cc", "bcc"
-	 * @param important "Important" flag of the email
-	 * @return {@link Request} instance with the provided data
-	 */
-	public static Request buildRequest(String html, String text, String subject, String senderName, String senderEmail, String recipientName, String recipientEmail, String recipientsType, boolean important){
-		List<Recipient> recipients = new ArrayList<Recipient>();
-		recipients.add(new Recipient(recipientEmail, recipientName, recipientsType));
-		Message message = new Message(html, text, subject, senderName, senderEmail, recipients, null, false);
-		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
-		Date now = new Date();
-		now.setDate(now.getDate()-1);
-		Request req = null;
-		req = new Request(new Configurator().getConfig("mandrill.auth.key"), message, important, Configurator.IP_POOL, format.format(now));
-		return req;
-	}
-	
-	
 }

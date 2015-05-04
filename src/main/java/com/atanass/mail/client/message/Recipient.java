@@ -16,6 +16,13 @@ public class Recipient {
 	@XmlElement
 	private String type;
 
+	public Recipient(String email, String name, String type) {
+		super();
+		this.email = email;
+		this.name = name;
+		this.type = type;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -28,12 +35,6 @@ public class Recipient {
 		return type;
 	}
 
-	public Recipient(String email, String name, String type) {
-		super();
-		this.email = email;
-		this.name = name;
-		this.type = type;
-	}
 	
 	
 }
