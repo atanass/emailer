@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 
 import com.atanass.mail.client.MailRestClient;
 import com.atanass.mail.client.MailRestClientFactory;
-import com.atanass.mail.client.message.Message;
 import com.atanass.mail.client.message.Recipient;
 import com.atanass.mail.client.message.Request;
 import com.atanass.mail.emailer.FormatAdaptor;

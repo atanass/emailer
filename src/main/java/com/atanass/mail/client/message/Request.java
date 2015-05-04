@@ -36,7 +36,7 @@ public class Request {
 		this.key = new Configurator().getConfig("mandrill.auth.key");
 		List<Recipient> recipients = new ArrayList<Recipient>();
 		recipients.add(new Recipient(recipientEmail, recipientName, recipientsType));
-		Message message = new Message(html, text, subject, senderName, senderEmail, recipients, null, false);
+		Message message = new Message(html, text, subject, senderName, senderEmail, recipients, null, important);
 		this.message = message; 
 		this.async = false;
 		this.ipPool = Configurator.IP_POOL;

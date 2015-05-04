@@ -6,7 +6,6 @@
 <script type="text/javascript" src="assets/javascript/emailer.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>  -->
 </head>
 <body>
 <p id="formName">Email submit form</p>
@@ -21,7 +20,7 @@
    <p class="inputs">Subject: <input type="text" name="subject"></p>
    <p class="inputs">Important? <input type="checkbox" id="importantCheckbox" onchange="changeImportant()"></p>
    <p class="inputs"><input type="hidden" id="importantParam"  name="important" value="false"></p>
-   <p><textarea cols="50" rows="5" name="msg" required></textarea></p>
+   <p><textarea class="text" cols="100" rows="25" name="msg" required></textarea></p>
    <input type="submit" value="Send message"></input>
 </form>
 </div>
