@@ -11,9 +11,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Message {
 
 	@XmlElement
-	private String html;
-	
-	@XmlElement
 	private String text;
 	
 	@XmlElement
@@ -34,11 +31,10 @@ public class Message {
 	@XmlElement
 	private boolean important;
 
-	public Message(String html, String text, String subject, String from_name,
+	public Message(String text, String subject, String from_name,
 			String from_email, List<Recipient> to, List<String> headers,
 			boolean important) {
 		super();
-		this.html = html;
 		this.text = text;
 		this.subject = subject;
 		this.fromName = from_name;
@@ -48,10 +44,6 @@ public class Message {
 		this.important = important;
 	}
 	
-	public String getHtml() {
-		return html;
-	}
-
 	public String getText() {
 		return text;
 	}

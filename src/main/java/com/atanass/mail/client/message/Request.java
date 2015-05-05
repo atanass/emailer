@@ -32,11 +32,11 @@ public class Request {
 	@XmlElement
 	private String sendAt;
 
-	public Request(String html, String text, String subject, String senderName, String senderEmail, String recipientName, String recipientEmail, String recipientsType, boolean important){
+	public Request(String text, String subject, String senderName, String senderEmail, String recipientName, String recipientEmail, String recipientsType, boolean important){
 		this.key = new Configurator().getConfig("mandrill.auth.key");
 		List<Recipient> recipients = new ArrayList<Recipient>();
 		recipients.add(new Recipient(recipientEmail, recipientName, recipientsType));
-		Message message = new Message(html, text, subject, senderName, senderEmail, recipients, null, important);
+		Message message = new Message(text, subject, senderName, senderEmail, recipients, null, important);
 		this.message = message; 
 		this.async = false;
 		this.ipPool = Configurator.IP_POOL;

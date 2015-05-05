@@ -27,7 +27,7 @@ public class MailRestService {
 			@FormParam("msg") String message) {
 
 		// Create the request object and the tools to process it
-		Request req = new Request("", message, subject,
+		Request req = new Request(message, subject,
 				from_name, from_email, to_name, to_email, "to", important);
 		MailRestClientFactory clientFactory = MailRestClientFactory.getFactory();
 		ResponseHandler handler = new ResponseHandler();
